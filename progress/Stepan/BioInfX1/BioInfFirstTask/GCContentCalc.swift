@@ -6,17 +6,20 @@ class GCContentCalc {
     static func calculate (read: String) -> Float {
         var percentage: Float = 0.0
         
-        var gCount: Float = 0
-        var cCount: Float = 0
+        var gCount: Int = 0
+        var cCount: Int = 0
         
         for character in read.characters {
-            switch String(character).uppercaseString {
+            switch character {
                 case "G": gCount += 1
                 case "C": cCount += 1
+                case "g": gCount += 1
+                case "c": cCount += 1
             default : break
             }
         }
-        percentage = (gCount+cCount)/Float(read.characters.count)
+        let sz = Float(read.characters.count)
+        percentage = Float(gCount+cCount)/sz
         
         return percentage
     }
