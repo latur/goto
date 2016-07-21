@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # file = open('C://Users/Tima/Documents/GitHub/goto/X1/train.fa', 'r')
 # a = file.readlines()
 # file.close()
@@ -224,7 +226,7 @@ def form_markchain(k, read_dict, type):
         markchain = find_n_plets(k, gene, markchain)
         lower_markchain = find_n_plets(k-1, gene, lower_markchain)
     for n_plet in markchain:
-        markchain[n_plet] = markchain[n_plet]/lower_markchain[n_plet[:len(n_plet)-1]]
+        markchain[n_plet] = float(markchain[n_plet])/lower_markchain[n_plet[:len(n_plet)-1]]
     return markchain
 
 
@@ -237,21 +239,26 @@ def find_probability(k, E_chain, C_chain, gene):
             n_plet+=gene[x+i]
         e_probability += log(E_chain[n_plet])
         c_probability += log(C_chain[n_plet])
-    return('[' + str(e_probability) + ',' + str(c_probability) + ']\n')
-    # if e_probability>c_probability:
-    #     return 'E '
-    # else:
-    #     return 'C '
+    # return('[' + str(e_probability) + ',' + str(c_probability) + ']\n')
+    if e_probability>c_probability:
+        return 'E '
+    else:
+        return 'C '
 
 train_genesdict = form_genesdict('C://Users/Tima/Documents/GitHub/goto/X1/train.fa')
-test_genesdict  = form_genesdict('C://Users/Tima/Documents/GitHub/goto/X1/test.fa')
-E_chain = form_markchain(8, train_genesdict, 'E')
-C_chain = form_markchain(8, train_genesdict, 'C')
-
+# test_genesdict  = form_genesdict('C://Users/Tima/Documents/GitHub/goto/X1/test.fa')
+E_chain = form_markchain(7, train_genesdict, 'E')
+C_chain = form_markchain(7, train_genesdict, 'C')
 
 result = ''
-for gene in test_genesdict:
-    result+=find_probability(8, E_chain, C_chain, test_genesdict[gene])
+f = open('C://Users/Tima/Documents/GitHub/goto/X1/test.fa')
+for line in f.xreadlines():
+  if line == '' : continue
+  if line[0] == '>' : continue
+  xread = line.replace('\n','')
+  find_probability(7, E_chain, C_chain, xread)
+f.close()
+
 resfile = open('C://Users/Tima/Desktop/resfile.txt', 'w')
 print(result, file=resfile)
 resfile.close()
