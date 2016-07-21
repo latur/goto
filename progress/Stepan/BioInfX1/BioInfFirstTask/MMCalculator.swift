@@ -7,9 +7,11 @@ class MMCalculator {
         var lesserCount: [String: Float] = [:]
         
         for read in reads {
+            //K-ном без последнего
             var part = String(read.characters.prefix(degree-1))
             
             for character in read.characters.dropFirst(degree-1) {
+                //Подчет количества K-номов без последнего (для деления)
                 if lesserCount[part] == nil {
                     lesserCount[part] = 1
                 }
@@ -17,6 +19,7 @@ class MMCalculator {
                     lesserCount[part]! += 1
                 }
                 
+                //Подсчет количества К-номов
                 let kPart: String = part+String(character)
                 if chain[kPart] == nil {
                     chain[kPart] = 1
@@ -24,10 +27,13 @@ class MMCalculator {
                 else {
                     chain[kPart]! += 1
                 }
+                
+                //Добавляем символ к К-ному
                 changePart(&part, withAdditionalChar: character)
             }
         }
         
+        //Вычисление вероятности
         for (key, value) in chain {
             if let qty = lesserCount[String(key.characters.dropLast())] {
                 chain[key] = value/qty

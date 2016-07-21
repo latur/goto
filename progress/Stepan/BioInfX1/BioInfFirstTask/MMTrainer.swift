@@ -18,17 +18,5 @@ class MMTrainer {
 //        return json
         
         return MMChain
-        
-//        var eLogProb: Float = 0
-//        var cLogProb: Float = 0
-//        
-//        for (_, value) in MMChain["E"]! {
-//            eLogProb += log(value)
-//        }
-//        for (_, value) in MMChain["C"]! {
-//            cLogProb += log(value)
-//        }
-//        
-//        return (eLogProb: eLogProb, cLogProb: cLogProb)
     }
 }

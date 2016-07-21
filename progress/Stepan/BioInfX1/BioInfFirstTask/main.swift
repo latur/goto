@@ -29,16 +29,14 @@ print ("  Parsed data.\n")
 //==========================
 //MM training and testing
 //==========================
-let possibilities = MMTrainer.train(parsedData, degree: 6)
+let possibilities = MMTrainer.train(parsedData, degree: 9)
 
 let testData = FastaParser.parse("/Users/admin/GoTo/Bio/progress/Stepan/test.fa")
 print ("  Parsed test data.\n")
 
-let result = MMTester.test(testData: testData, degree: 6, possibilities: possibilities)
-fileManager.createFileAtPath("/Users/admin/GoTo/Bio/progress/Stepan/MMresult.txt", contents: (result as NSString).dataUsingEncoding(NSUTF8StringEncoding), attributes: [:])
+let result = MMTester.test(testData: testData, degree: 9, possibilities: possibilities)
+fileManager.createFileAtPath("/Users/admin/GoTo/Btuyio/progress/Stepan/MMresult.txt", contents: (result as NSString).dataUsingEncoding(NSUTF8StringEncoding), attributes: [:])
 print ("  Result is created.\n")
-//fileManager.createFileAtPath("/Users/admin/GoTo/Bio/progress/Stepan/MMtrain.json", contents: json, attributes: [:])
-//print ("  Json created")
 //==========================
 
 
