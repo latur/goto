@@ -1,13 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # cd Public/goto/
-# ./progress/igor/mm.py
+# ./progress/igor.py 2
 
 import os, sys
 from sys import argv
 from math import log
 
-K = 8
+K = int(argv[1])
 
 # Reverse complement
 def Rev(s) :
@@ -58,7 +58,7 @@ def TestModel(M, read) :
     prob += log(M[kmer])
   return prob
 
-result = ''
+
 f = open('data/X1/test.fa')
 for line in f.xreadlines():
   if line == '' : continue
@@ -66,9 +66,7 @@ for line in f.xreadlines():
   xread = line.replace('\n','')
   # Проверка обоих моделей
   if TestModel(MME, xread) >= TestModel(MMC, xread) :
-    result += ' E'
+    print 'E'
   else :
-    result += ' C'
+    print 'C'
 f.close()
-
-print result  
