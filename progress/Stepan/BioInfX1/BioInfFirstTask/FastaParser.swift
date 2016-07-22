@@ -29,7 +29,7 @@ class FastaParser {
                 parsedCode[currentType]!.append(line)
             }
         }
-        print ("data parsed")
+        print ("  Parsed data.\n")
         return parsedCode
     }
 }

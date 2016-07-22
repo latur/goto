@@ -6,26 +6,35 @@ class GCCTrainer {
     static func train (data: [String], degree: Int) -> [Float] {
         var hystogram: [Float] = []
         
+        var tempGCC: Float = 0
+        
         let anyRead = data[0]
         let count: Float = Float(anyRead.characters.count)
         
         var endIndex: Int = 0
         var part: String = ""
 
-        for index in 0..<anyRead.characters.dropFirst(degree-1).count {
+        let sz = anyRead.characters.count
+        
+        for index in 0..<sz {
             
             endIndex = index+degree
+            //  может быть ошибка тут
             let range = anyRead.startIndex.advancedBy(index)..<anyRead.startIndex.advancedBy(endIndex)
-    
+            
             for read in data {
                 part = read.substringWithRange(range)
-                hystogram.append(GCContentCalc.calculate(part))
+                tempGCC += GCContentCalc.calculate(part, degree: degree)
             }
 //            guard (hystogram.last != nil) else {
 //                print ("last doesn't exist")
 //                exit(228)
 //            }
-            hystogram.append(hystogram.popLast()!/count)
+            hystogram.append(tempGCC/count)
+            tempGCC = 0
+            
+            print ("  \(Float(index)/Float(sz))%, \(sz)")
+            
         }
         
         return hystogram

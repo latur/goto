@@ -6,7 +6,7 @@ let fileManager = NSFileManager()
 
 let parsedData = FastaParser.parse("/Users/admin/GoTo/Bio/progress/Stepan/X2/reads.fa")
 
-let result = GCCTrainer.train(parsedData["O"]!, degree: 25)
+let result = GCCTrainer.train(parsedData["O"]!, degree: 100)
 
 guard let json = try? NSJSONSerialization.dataWithJSONObject(result, options: []) else {
     print ("json error")
