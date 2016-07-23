@@ -46,7 +46,7 @@ def transpose (read) :
 	transposedRead = ""
 
 	for i in range (lenSz) :
-		transposedRead += change[read[lenSz-i-1]]
+		transposedRead += change[read[i]]
 
 	return transposedRead
 
@@ -113,6 +113,7 @@ def findExons (unmutatedReads) :
 	minExonLength = 8
 
 	exonCoords = [[], [], []]
+	str = ""
 
 	tempExons = [[0,""], [0,""], [0,""]]
 	for i in range (len(unmutatedReads[0])) :
@@ -123,9 +124,11 @@ def findExons (unmutatedReads) :
 				else : 
 					tempExons[j][1] += unmutatedReads[j][i]
 			else :
-				exonCoords[j] = [tempExons[j][0], i-1]
-				tempExons[j] = [0, ""]
-	print exonCoords
+				if len(tempExons[j][1]) > minExonLength :
+					#exonCoords[j].append ([tempExons[j][0], i-1])
+					str += "{}\t{}\n".format(tempExons[j][0]*3, (i-1)*3)
+					tempExons[j] = [0, ""]
+	print str
 
 
 results = []
