@@ -196,13 +196,13 @@ def add_nuc_to_chain(chain):
     result_chain = {}
     for x in chain:
         for y in nuc:
-            result_chain[x+y]=1
+            result_chain[x+y]=0.0000000000000000000000000000001
     return result_chain
 
 def gen_base_markchain(k):
     nuc = ['T', 'G', 'C', 'A']
     if k <= 1:
-        return {'T':1, 'G':1, 'C':1, 'A':1}
+        return {'T':0.0000000000000000000000000000001, 'G':0.0000000000000000000000000000001, 'C':0.0000000000000000000000000000001, 'A':0.0000000000000000000000000000001}
     else:
         return add_nuc_to_chain(gen_base_markchain(k-1))
 
@@ -231,8 +231,8 @@ def form_markchain(k, read_dict, type):
 
 
 def find_probability(k, E_chain, C_chain, gene):
-    e_probability = 1
-    c_probability = 1
+    e_probability = 0.0000000000000000000000000000001
+    c_probability = 0.0000000000000000000000000000001
     for x in range(len(gene)-k):
         n_plet = ''
         for i in range(k):
@@ -252,11 +252,11 @@ C_chain = form_markchain(7, train_genesdict, 'C')
 
 result = ''
 f = open('C://Users/Tima/Documents/GitHub/goto/X1/test.fa')
-for line in f.xreadlines():
+for line in f.readlines():
   if line == '' : continue
   if line[0] == '>' : continue
   xread = line.replace('\n','')
-  find_probability(7, E_chain, C_chain, xread)
+  result+=find_probability(7, E_chain, C_chain, xread)
 f.close()
 
 resfile = open('C://Users/Tima/Desktop/resfile.txt', 'w')
