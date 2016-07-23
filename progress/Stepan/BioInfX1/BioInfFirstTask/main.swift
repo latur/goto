@@ -6,10 +6,6 @@ import Foundation
 
 let fileManager = NSFileManager.defaultManager()
 
-//Parsing
-let parsedData = FastaParser.parse("/Users/admin/GoTo/Bio/progress/Stepan/train.fa")
-print ("  Parsed data.\n")
-
 //==========================
 //GC content training
 //==========================
@@ -29,12 +25,15 @@ print ("  Parsed data.\n")
 //==========================
 //MM training and testing
 //==========================
-let possibilities = MMTrainer.train(parsedData, degree: 9)
+//Parsing
+let parsedData = FastaParser.parse("/Users/admin/GoTo/Bio/progress/Stepan/train.fa")
+
+let possibilities = MMTrainer.train(parsedData, degree: 4)
 
 let testData = FastaParser.parse("/Users/admin/GoTo/Bio/progress/Stepan/test.fa")
 print ("  Parsed test data.\n")
 
-let result = MMTester.test(testData: testData, degree: 9, possibilities: possibilities)
+let result = MMTester.test(testData: testData, degree: 4, possibilities: possibilities)
 fileManager.createFileAtPath("/Users/admin/GoTo/Btuyio/progress/Stepan/MMresult.txt", contents: (result as NSString).dataUsingEncoding(NSUTF8StringEncoding), attributes: [:])
 print ("  Result is created.\n")
 //==========================
