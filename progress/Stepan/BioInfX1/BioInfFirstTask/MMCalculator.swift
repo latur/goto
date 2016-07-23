@@ -35,10 +35,12 @@ class MMCalculator {
         
         //Вычисление вероятности
         for (key, value) in chain {
+            //Долго
             if let qty = lesserCount[String(key.characters.dropLast())] {
                 chain[key] = value/qty
             }
             else {
+                print("kek")
                 chain[key] = 1
             }
         }
