@@ -8,6 +8,7 @@
  * Множественные выравнивания [ClustalW / ClustalX](http://www.clustal.org/clustal2/)
  * Сеть генных взаимодействий [HumanNet](http://www.functionalnet.org/humannet/download.html)
  * JS [библиотечка](https://github.com/latur/Bioinformatics) и [список аминокислот](https://github.com/latur/Bioinformatics/blob/master/%40bio.js#L114)
+ * [gdc-portal.nci.nih.gov](https://gdc-portal.nci.nih.gov/search/s)
 
 ### Учёба
 
