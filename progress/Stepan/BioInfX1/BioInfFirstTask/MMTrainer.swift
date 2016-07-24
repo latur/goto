@@ -9,13 +9,14 @@ class MMTrainer {
         MMCalculator.calculate(parsedData["E"]!, chain: &MMChain["E"]!, degree: degree)
         MMCalculator.calculate(parsedData["C"]!, chain: &MMChain["C"]!, degree: degree)
         
-//        //JSON creation
-//        guard let json = try? NSJSONSerialization.dataWithJSONObject(MMChain, options: []) else {
-//            print ("NSJSONSer Error")
-//            exit(228)
-//        }
-//        
-//        return json
+        //JSON creation
+        guard let json = try? NSJSONSerialization.dataWithJSONObject(MMChain, options: []) else {
+            print ("NSJSONSer Error")
+            exit(228)
+        }
+        
+        let fm = NSFileManager()
+        fm.createFileAtPath("/Users/admin/GoTo/Bio/progress/Stepan/BioInfX1/ilyaloh", contents: json, attributes: [:])
         
         return MMChain
     }
