@@ -6,10 +6,11 @@ class MMTester {
     static func test (testData data: [String: [String]], degree: Int, possibilities: [String: [String: Float]]) -> String {
         var result = ""
         
-        var eLogProb: Float = 0
-        var cLogProb: Float = 0
-        
         for read in data["X"]! {
+           
+            var eLogProb: Float = 0
+            var cLogProb: Float = 0
+            
             var part = String(read.characters.prefix(degree-1))
             
             for character in read.characters.dropFirst(degree-1) {
@@ -18,7 +19,7 @@ class MMTester {
                 let ePartProb = possibilities["E"]![part+String(character)]
                 
                 if ePartProb == nil {
-                    eLogProb -= 9999//log(1)
+                    eLogProb -= 9999999
                 }
                 else {
                     eLogProb += log(ePartProb!)
@@ -27,7 +28,7 @@ class MMTester {
                 let cPartProb = possibilities["C"]![part+String(character)]
                 
                 if cPartProb == nil {
-                    cLogProb -= 9999//log(1)
+                    cLogProb -= 9999999
                 }
                 else {
                     cLogProb += log(cPartProb!)
@@ -42,7 +43,6 @@ class MMTester {
             else {
                 result += "C "
             }
-            
         }
         return result
     }
