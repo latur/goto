@@ -88,11 +88,11 @@ print('id_set: ', len(g.id_set))
 arr_ins += [0 for i in range(len(g.id_set) - len(arr_ins))]
 
 
-plt.subplot(211)
-plt.hist(arr_ins + [0 for i in range(len(g.id_set) - len(arr_ins))], bins=600)
-plt.subplot(212)
-plt.hist(arr_outs, bins=700)
-plt.show()
+# plt.subplot(211)
+# plt.hist(arr_ins + [0 for i in range(len(g.id_set) - len(arr_ins))], bins=600)
+# plt.subplot(212)
+# plt.hist(arr_outs, bins=700)
+# plt.show()
 
 ''' thr for ins '''
 mu = np.mean(arr_ins)
@@ -102,8 +102,8 @@ msum = 0
 for i in arr_ins:
     msum += (i - mu)**2
 sigma = sqrt(msum/len(arr_ins))
-thr = mu + 2*sigma
-print('ins: ', thr)
+thr_in = mu + 2*sigma
+print('ins: ', thr_in)
 
 
 ''' thr for outs '''
@@ -113,6 +113,32 @@ msum = 0
 for i in arr_outs:
     msum += (i - mu)**2
 sigma = sqrt(msum/len(arr_outs))
-thr = mu + 2*sigma
-print('outs: ', thr)
+thr_out = mu + 2*sigma
+print('outs: ', thr_out)
 
+out_more_thr = []
+in_more_thr = []
+
+for k,v in g.arr_ins.items():
+    if v > thr_in:
+        in_more_thr.append((k, v))
+
+for i in g.id_set:
+    v = g.get_out_num(i)
+    if v > thr_out:
+        out_more_thr.append((i, v))
+
+
+
+out = open('../data/basic_network/dima_outstanding_in_out.txt', 'w+')
+for k,v in in_more_thr:
+    res = str(k) + '\t' + str(v)
+    print(res, file=out)
+print('--------------------------', file=out)
+for k,v in out_more_thr:
+    res = str(k) + '\t' + str(v)
+    print(res, file=out)
+
+out.seek(0)
+print(out.read())
+out.close()
