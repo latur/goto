@@ -47,7 +47,7 @@ class Graph():
 
 g = Graph()
 
-f = open('../data/HumanNet.txt')
+f = open('../data/basic_network/HumanNet.txt')
 while True:
     s = f.readline()
     if s == '': break
@@ -87,11 +87,13 @@ print('id_set: ', len(g.id_set))
 
 arr_ins += [0 for i in range(len(g.id_set) - len(arr_ins))]
 
-# plt.hist(arr_ins + [0 for i in range(len(g.id_set) - len(arr_ins))], bins=600)
-# plt.show()
+plt.figure(1)
+plt.hist(arr_ins + [0 for i in range(len(g.id_set) - len(arr_ins))], bins=600)
+# plt.show() 
 
-# plt.hist(arr_outs, bins=700)
-# plt.show()
+plt.figure(2)
+plt.hist(arr_outs, bins=700)
+plt.show()
 
 ''' thr for ins '''
 mu = np.mean(arr_ins)
