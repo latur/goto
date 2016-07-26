@@ -44,8 +44,8 @@ oArr = []
 for k,v in genio.items():
 	iArr.append(v[0])
 	oArr.append(v[1])
-P.hist(iArr, bins = 100)
-P.show()
+#P.hist(iArr, bins = 100)
+#P.show()
 arr = iArr
 meanx = N.mean(arr)
 n = len(arr)
@@ -53,5 +53,20 @@ sumArr = 0
 for i in range(1,n):
 	sumArr += N.power(arr[i]-meanx,2)
 sigma = sqrt(sumArr/n)	
-thr = meanx+ 2*sigma
-print(thr)
+thri = meanx+ 2*sigma
+
+arr = oArr
+meanx = N.mean(arr)
+n = len(arr)
+sumArr = 0
+for i in range(1,n):
+	sumArr += N.power(arr[i]-meanx,2)
+sigma = sqrt(sumArr/n)	
+thro = meanx+ 2*sigma
+
+oGen = []
+for k,v in genio.items():
+	if float(v[1]) > thro:
+		oGen.append(k)
+
+print(oGen)			
