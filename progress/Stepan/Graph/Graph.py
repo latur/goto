@@ -85,9 +85,9 @@ def fillDependencies (graph) :
 
 #  Makes histograms for each degree array
 def showHistograms (incomingDegreesForGraph, outcomingDegreesForGraph) :
-	plt.subplot (2,1,0)
+	plt.subplot (2,1,0).set_title("Income")
 	plt.hist(incomingDegreesForGraph, bins = 60)
-	plt.subplot (2,1,1)
+	plt.subplot (2,1,1).set_title("Outcome")
 	plt.hist(outcomingDegreesForGraph, bins = 60)
 	plt.show()
 
@@ -119,23 +119,26 @@ def saveToFile (path, data) :
 		result.write(data)
 		print ("  File \"{}\" created.").format(path)
 
+#  Calculates and saves all stuff
+def analyseDataAndFindSickGenes (degrees, path) :
+	treshold = calculateThreshold(degrees[::2]) 
+	print "  Threshold calculated."
+	
+	sickGenes = findSickGenes(degrees, treshold)
+	saveToFile (path, sickGenes)
+
+
 graph = GeneGraph("HumanNet.txt")
-print "  Graph initialized.\n"
+print "Graph initialized.\n"
 
 degrees = fillDependencies(graph)
-print "  Degrees calculated.\n"
+print "Degrees calculated.\n"
+ 
+#showHistograms (degrees[0][::2], degrees[1][::2])
 
+analyseDataAndFindSickGenes (degrees[0], "IncomeSickGenes.lal")
+print "Income saved.\n"
+analyseDataAndFindSickGenes (degrees[1], "OutcomeSickGenes.lal")
+print "Outcome saved.\n"
 
-#  TODO:  ОБЪЕДЕНИТЬ ВСЕ В ФУНКЦИЮ
-incomeTreshold = calculateThreshold(degrees[0][::2]) 
-print "  Income threshold calculated.\n"
-
-outcomeTreshold = calculateThreshold(degrees[1][::2])
-print "  Outcome threshold calculated.\n"
-
-incomeSickGenes = findSickGenes(degrees[0], incomeTreshold)
-outcomeSickGenes = findSickGenes (degrees[1], outcomeTreshold)
-
-saveToFile ("IncomeSickGenes.lal", incomeSickGenes)
-saveToFile ("OutcomeSickGenes.lal", outcomeSickGenes)
 
