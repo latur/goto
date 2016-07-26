@@ -69,17 +69,21 @@ class GeneGraph :
 		else :
 			return self.incomingDegrees[geneName]
 
+#  Calculates income and outcome degrees for each gene and puts them to two arrays
 def fillDependencies (graph) :
 	incomingDegreesForGraph = []
 	for gene in graph.genes :
 		incomingDegreesForGraph.append(graph.getIncomingDegreeOfGene(gene))
+		incomingDegreesForGraph.append(gene)
 
 	outcomingDegreesForGraph = []
 	for gene in graph.genes :
 		outcomingDegreesForGraph.append(graph.getOutcomingDegreeOfGene(gene))
+		outcomingDegreesForGraph.append(gene)		
 
 	return (incomingDegreesForGraph, outcomingDegreesForGraph)
 
+#  Makes histograms for each degree array
 def showHistograms (incomingDegreesForGraph, outcomingDegreesForGraph) :
 	plt.subplot (2,1,0)
 	plt.hist(incomingDegreesForGraph, bins = 60)
@@ -87,6 +91,7 @@ def showHistograms (incomingDegreesForGraph, outcomingDegreesForGraph) :
 	plt.hist(outcomingDegreesForGraph, bins = 60)
 	plt.show()
 
+#  Some statistics manipulations to get the outstanding degree values
 def calculateThreshold(degrees) :
 	avg = np.mean(degrees)
 	standartDeviation = 0
@@ -99,11 +104,38 @@ def calculateThreshold(degrees) :
 
 	threshold = avg + 2*standartDeviation
 	return threshold
-	
+
+#  Sick - crazy, cool, insane (urbandictionary.com).
+def findSickGenes (degrees, threshold) :
+	result = ""
+	for i in range (0, len(degrees), 2) :
+		if degrees[i] >= threshold :
+			result += "{}\t{}\n".format(degrees[i+1], degrees[i])
+	return result
+
+#  Creates file on selected path and puts data into it
+def saveToFile (path, data) :
+	with open(path, "w") as result :
+		result.write(data)
+		print ("  File \"{}\" created.").format(path)
+
 graph = GeneGraph("HumanNet.txt")
+print "  Graph initialized.\n"
 
 degrees = fillDependencies(graph)
+print "  Degrees calculated.\n"
 
-#showHistograms(degrees[0], degrees[1])
-print calculateThreshold(degrees[0])
-print calculateThreshold(degrees[1])
+
+#  TODO:  ОБЪЕДЕНИТЬ ВСЕ В ФУНКЦИЮ
+incomeTreshold = calculateThreshold(degrees[0][::2]) 
+print "  Income threshold calculated.\n"
+
+outcomeTreshold = calculateThreshold(degrees[1][::2])
+print "  Outcome threshold calculated.\n"
+
+incomeSickGenes = findSickGenes(degrees[0], incomeTreshold)
+outcomeSickGenes = findSickGenes (degrees[1], outcomeTreshold)
+
+saveToFile ("IncomeSickGenes.lal", incomeSickGenes)
+saveToFile ("OutcomeSickGenes.lal", outcomeSickGenes)
+
