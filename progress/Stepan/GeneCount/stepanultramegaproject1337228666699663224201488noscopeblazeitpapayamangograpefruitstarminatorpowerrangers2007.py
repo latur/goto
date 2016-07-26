@@ -45,11 +45,7 @@ def calculateDifference (gene, minDifference) :
 		return 0
 	else :
 		result = None
-		if gene[0] == 0 :
-			#  Забыл зачем это
-			result = float(gene[1]-1)/float(gene[1]+1)
-		else : 
-			result = float(gene[1]-gene[0])/float(gene[1]+gene[0])
+		result = float(-gene[1]+gene[0])/float(gene[1]+gene[0])
 		return result
 
 #  Made for vanishing copypast
