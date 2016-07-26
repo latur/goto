@@ -30,6 +30,8 @@
 '''
 
 import matplotlib.pyplot as plt
+import numpy as np
+from math import sqrt
 
 class GeneGraph :
 	edges = {}
@@ -85,8 +87,23 @@ def showHistograms (incomingDegreesForGraph, outcomingDegreesForGraph) :
 	plt.hist(outcomingDegreesForGraph, bins = 60)
 	plt.show()
 
+def calculateThreshold(degrees) :
+	avg = np.mean(degrees)
+	standartDeviation = 0
+	for value in degrees :
+		squareDeviation = pow(value-avg, 2)
+		standartDeviation += squareDeviation
+	
+	standartDeviation /= len(degrees)
+	standartDeviation = sqrt(standartDeviation)
+
+	threshold = avg + 2*standartDeviation
+	return threshold
+	
 graph = GeneGraph("HumanNet.txt")
 
 degrees = fillDependencies(graph)
 
-showHistograms(degrees[0], degrees[1])
+#showHistograms(degrees[0], degrees[1])
+print calculateThreshold(degrees[0])
+print calculateThreshold(degrees[1])
