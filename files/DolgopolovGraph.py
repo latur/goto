@@ -87,11 +87,10 @@ print('id_set: ', len(g.id_set))
 
 arr_ins += [0 for i in range(len(g.id_set) - len(arr_ins))]
 
-plt.figure(1)
-plt.hist(arr_ins + [0 for i in range(len(g.id_set) - len(arr_ins))], bins=600)
-# plt.show() 
 
-plt.figure(2)
+plt.subplot(211)
+plt.hist(arr_ins + [0 for i in range(len(g.id_set) - len(arr_ins))], bins=600)
+plt.subplot(212)
 plt.hist(arr_outs, bins=700)
 plt.show()
 
