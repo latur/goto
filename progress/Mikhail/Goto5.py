@@ -42,12 +42,14 @@ genH = {}
 genC = {}
 for i in reparated:
 	if i in genArrC:
-		genC[i] = genArrC[i]
-	if i in genArrH:
-		genH[i] = genArrH[i]
-diffArr = []			
+		genC[i] = genArrC[i]  #{ outName: [ inName ] }
+	if i in genArrH: 
+		genH[i] = genArrH[i]  #{ outName: [ {inName : expr}, ... ] }
+diffMap = {}		
+diffArr = []	
 for k,v in genC.items():
-	diffArr.append(len(genH[k]) - len(genC[k]))
+	diffMap[k] = (len(genH[k]) - len(genC[k]))
+	diffArr.append((len(genH[k]) - len(genC[k])))
 
 import numpy as N
 import matplotlib.pyplot as P
@@ -68,6 +70,14 @@ thri_min = meanx - 2*sigma
 
 print(thri_plus)
 print(thri_min)
+f2=open('D://projects/maxThr.txt', 'w+')
+f3=open('D://projects/minThr.txt', 'w+')
+for k,v in diffMap.items():
+	if v>thri_plus:
+		print(k, '\t', v, file=f2)
+	if v<thri_plus:
+		print(k, '\t', v, file=f3)	
+
 
 
 
