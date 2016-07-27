@@ -45,100 +45,101 @@ class Graph():
             return 0
 
 
-g = Graph()
+# g = Graph()
 
-f = open('../data/basic_network/HumanNet.txt')
-while True:
-    s = f.readline()
-    if s == '': break
-    s2 = s.split(' ')
-    g.add(s2[0], s2[1], s2[2][:len(s2[2])-1])
-f.close()
+# f = open('../data/basic_network/HumanNet.txt')
+# while True:
+#     s = f.readline()
+#     if s == '': break
+#     s2 = s.split(' ')
+#     g.add(s2[0], s2[1], s2[2][:len(s2[2])-1])
+# f.close()
 
-''' CHECKPOINT '''
-print('file is read')
+# ''' CHECKPOINT '''
+# print('file is read')
 
-# print(g)
-arr_ins = []
-arr_outs = []
-
-for i in g.id_set:
-    arr_outs.append(g.get_out_num(i))
-
-''' CHECKPOINT '''
-print('массив1 посчитан')
+# # print(g)
+# arr_ins = []
+# arr_outs = []
 
 # for i in g.id_set:
-    # arr_ins.append(g.get_in_num(i))
+#     arr_outs.append(g.get_out_num(i))
 
-''' CHECKPOINT '''
-print('массивы посчитаны')
+# ''' CHECKPOINT '''
+# print('массив1 посчитан')
 
-import numpy as np
-import matplotlib.pyplot as plt
+# # for i in g.id_set:
+#     # arr_ins.append(g.get_in_num(i))
 
-''' CHECKPOINT '''
-print('заимпортили пиплот')
-for k,v in g.arr_ins.items():
-    arr_ins.append(v)
+# ''' CHECKPOINT '''
+# print('массивы посчитаны')
 
-print('arr_ins: ', len(g.arr_ins))
-print('id_set: ', len(g.id_set))
+# import numpy as np
+# import matplotlib.pyplot as plt
 
-arr_ins += [0 for i in range(len(g.id_set) - len(arr_ins))]
+# ''' CHECKPOINT '''
+# print('заимпортили пиплот')
+# for k,v in g.arr_ins.items():
+#     arr_ins.append(v)
 
+# print('arr_ins: ', len(g.arr_ins))
+# print('id_set: ', len(g.id_set))
 
-# plt.subplot(211)
-# plt.hist(arr_ins + [0 for i in range(len(g.id_set) - len(arr_ins))], bins=600)
-# plt.subplot(212)
-# plt.hist(arr_outs, bins=700)
-# plt.show()
-
-''' thr for ins '''
-mu = np.mean(arr_ins)
-
-from math import sqrt
-msum = 0
-for i in arr_ins:
-    msum += (i - mu)**2
-sigma = sqrt(msum/len(arr_ins))
-thr_in = mu + 2*sigma
-print('ins: ', thr_in)
+# arr_ins += [0 for i in range(len(g.id_set) - len(arr_ins))]
 
 
-''' thr for outs '''
-mu = np.mean(arr_outs)
+# # plt.subplot(211)
+# # plt.hist(arr_ins + [0 for i in range(len(g.id_set) - len(arr_ins))], bins=600)
+# # plt.subplot(212)
+# # plt.hist(arr_outs, bins=700)
+# # plt.show()
 
-msum = 0
-for i in arr_outs:
-    msum += (i - mu)**2
-sigma = sqrt(msum/len(arr_outs))
-thr_out = mu + 2*sigma
-print('outs: ', thr_out)
+# ''' thr for ins '''
+# mu = np.mean(arr_ins)
 
-out_more_thr = []
-in_more_thr = []
-
-for k,v in g.arr_ins.items():
-    if v > thr_in:
-        in_more_thr.append((k, v))
-
-for i in g.id_set:
-    v = g.get_out_num(i)
-    if v > thr_out:
-        out_more_thr.append((i, v))
+# from math import sqrt
+# msum = 0
+# for i in arr_ins:
+#     msum += (i - mu)**2
+# sigma = sqrt(msum/len(arr_ins))
+# thr_in = mu + 2*sigma
+# print('ins: ', thr_in)
 
 
+# ''' thr for outs '''
+# mu = np.mean(arr_outs)
 
-out = open('../data/basic_network/dima_outstanding_in_out.txt', 'w+')
-for k,v in in_more_thr:
-    res = str(k) + '\t' + str(v)
-    print(res, file=out)
-print('--------------------------', file=out)
-for k,v in out_more_thr:
-    res = str(k) + '\t' + str(v)
-    print(res, file=out)
+# msum = 0
+# for i in arr_outs:
+#     msum += (i - mu)**2
+# sigma = sqrt(msum/len(arr_outs))
+# thr_out = mu + 2*sigma
+# print('outs: ', thr_out)
 
-out.seek(0)
-print(out.read())
-out.close()
+# out_more_thr = []
+# in_more_thr = []
+
+# for k,v in g.arr_ins.items():
+#     if v > thr_in:
+#         in_more_thr.append((k, v))
+
+# for i in g.id_set:
+#     v = g.get_out_num(i)
+#     if v > thr_out:
+#         out_more_thr.append((i, v))
+
+
+
+# out = open('../data/basic_network/dima_outstanding_in_out.txt', 'w+')
+# for k,v in in_more_thr:
+#     res = str(k) + '\t' + str(v)
+#     print(res, file=out)
+# print('--------------------------', file=out)
+# for k,v in out_more_thr:
+#     res = str(k) + '\t' + str(v)
+#     print(res, file=out)
+
+# out.seek(0)
+# print(out.read())
+# out.close()
+# '''
