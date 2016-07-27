@@ -75,7 +75,7 @@ f3=open('D://projects/minThrNew.txt', 'w+')
 for k,v in diffMap.items():
 	if v>thri_plus:
 		print(k, '\t', v, file=f2)
-	if v<thri_plus:
+	if v<thri_min:
 		print(k, '\t', v, file=f3)	
 
 
