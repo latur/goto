@@ -1,0 +1,333 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		840B4C581D3E0EFF00FF7A80 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B4C571D3E0EFF00FF7A80 /* main.swift */; };
+		840B4C631D3E0FB300FF7A80 /* FastaParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B4C621D3E0FB300FF7A80 /* FastaParser.swift */; };
+		840B4C661D3E265600FF7A80 /* GCContentCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B4C651D3E265600FF7A80 /* GCContentCalc.swift */; };
+		840B4C691D3E531100FF7A80 /* GCContentTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B4C681D3E531100FF7A80 /* GCContentTrainer.swift */; };
+		840B4C6E1D3E5DF100FF7A80 /* FrequencyAnalysisTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B4C6D1D3E5DF100FF7A80 /* FrequencyAnalysisTrainer.swift */; };
+		840B4C701D3E5F7800FF7A80 /* FrequencyCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B4C6F1D3E5F7800FF7A80 /* FrequencyCalculator.swift */; };
+		840B4C721D3E5FE400FF7A80 /* GCContentTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B4C711D3E5FE400FF7A80 /* GCContentTester.swift */; };
+		84D31D971D3ED73D00E44458 /* FrequencyAnalysisTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D31D961D3ED73D00E44458 /* FrequencyAnalysisTester.swift */; };
+		84D31D9A1D3F803600E44458 /* MMTrainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D31D991D3F803600E44458 /* MMTrainer.swift */; };
+		84D31D9C1D3FA5A900E44458 /* MMTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D31D9B1D3FA5A900E44458 /* MMTester.swift */; };
+		84D31D9E1D3FAD3900E44458 /* MMCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D31D9D1D3FAD3900E44458 /* MMCalculator.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		840B4C521D3E0EFF00FF7A80 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		840B4C541D3E0EFF00FF7A80 /* BioInfFirstTask */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BioInfFirstTask; sourceTree = BUILT_PRODUCTS_DIR; };
+		840B4C571D3E0EFF00FF7A80 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		840B4C5F1D3E0F9200FF7A80 /* test.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = test.fa; path = ../test.fa; sourceTree = "<group>"; };
+		840B4C601D3E0F9200FF7A80 /* train.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = train.fa; path = ../train.fa; sourceTree = "<group>"; };
+		840B4C621D3E0FB300FF7A80 /* FastaParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FastaParser.swift; sourceTree = "<group>"; };
+		840B4C651D3E265600FF7A80 /* GCContentCalc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCContentCalc.swift; sourceTree = "<group>"; };
+		840B4C681D3E531100FF7A80 /* GCContentTrainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCContentTrainer.swift; sourceTree = "<group>"; };
+		840B4C6D1D3E5DF100FF7A80 /* FrequencyAnalysisTrainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyAnalysisTrainer.swift; sourceTree = "<group>"; };
+		840B4C6F1D3E5F7800FF7A80 /* FrequencyCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyCalculator.swift; sourceTree = "<group>"; };
+		840B4C711D3E5FE400FF7A80 /* GCContentTester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCContentTester.swift; sourceTree = "<group>"; };
+		84D31D961D3ED73D00E44458 /* FrequencyAnalysisTester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyAnalysisTester.swift; sourceTree = "<group>"; };
+		84D31D991D3F803600E44458 /* MMTrainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMTrainer.swift; sourceTree = "<group>"; };
+		84D31D9B1D3FA5A900E44458 /* MMTester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMTester.swift; sourceTree = "<group>"; };
+		84D31D9D1D3FAD3900E44458 /* MMCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMCalculator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		840B4C511D3E0EFF00FF7A80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		840B4C4B1D3E0EFF00FF7A80 = {
+			isa = PBXGroup;
+			children = (
+				840B4C561D3E0EFF00FF7A80 /* BioInfFirstTask */,
+				840B4C5E1D3E0F6D00FF7A80 /* resources */,
+				840B4C551D3E0EFF00FF7A80 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		840B4C551D3E0EFF00FF7A80 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				840B4C541D3E0EFF00FF7A80 /* BioInfFirstTask */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		840B4C561D3E0EFF00FF7A80 /* BioInfFirstTask */ = {
+			isa = PBXGroup;
+			children = (
+				84D31D981D3F801C00E44458 /* MM */,
+				840B4C6C1D3E5DC100FF7A80 /* FrequencyAnalysis */,
+				840B4C641D3E263800FF7A80 /* GCContent */,
+				840B4C611D3E0FA200FF7A80 /* FastaParser */,
+				840B4C571D3E0EFF00FF7A80 /* main.swift */,
+			);
+			path = BioInfFirstTask;
+			sourceTree = "<group>";
+		};
+		840B4C5E1D3E0F6D00FF7A80 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				840B4C5F1D3E0F9200FF7A80 /* test.fa */,
+				840B4C601D3E0F9200FF7A80 /* train.fa */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		840B4C611D3E0FA200FF7A80 /* FastaParser */ = {
+			isa = PBXGroup;
+			children = (
+				840B4C621D3E0FB300FF7A80 /* FastaParser.swift */,
+			);
+			name = FastaParser;
+			sourceTree = "<group>";
+		};
+		840B4C641D3E263800FF7A80 /* GCContent */ = {
+			isa = PBXGroup;
+			children = (
+				840B4C651D3E265600FF7A80 /* GCContentCalc.swift */,
+				840B4C681D3E531100FF7A80 /* GCContentTrainer.swift */,
+				840B4C711D3E5FE400FF7A80 /* GCContentTester.swift */,
+			);
+			name = GCContent;
+			sourceTree = "<group>";
+		};
+		840B4C6C1D3E5DC100FF7A80 /* FrequencyAnalysis */ = {
+			isa = PBXGroup;
+			children = (
+				840B4C6D1D3E5DF100FF7A80 /* FrequencyAnalysisTrainer.swift */,
+				840B4C6F1D3E5F7800FF7A80 /* FrequencyCalculator.swift */,
+				84D31D961D3ED73D00E44458 /* FrequencyAnalysisTester.swift */,
+			);
+			name = FrequencyAnalysis;
+			sourceTree = "<group>";
+		};
+		84D31D981D3F801C00E44458 /* MM */ = {
+			isa = PBXGroup;
+			children = (
+				84D31D991D3F803600E44458 /* MMTrainer.swift */,
+				84D31D9B1D3FA5A900E44458 /* MMTester.swift */,
+				84D31D9D1D3FAD3900E44458 /* MMCalculator.swift */,
+			);
+			name = MM;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		840B4C531D3E0EFF00FF7A80 /* BioInfFirstTask */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 840B4C5B1D3E0EFF00FF7A80 /* Build configuration list for PBXNativeTarget "BioInfFirstTask" */;
+			buildPhases = (
+				840B4C501D3E0EFF00FF7A80 /* Sources */,
+				840B4C511D3E0EFF00FF7A80 /* Frameworks */,
+				840B4C521D3E0EFF00FF7A80 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BioInfFirstTask;
+			productName = BioInfFirstTask;
+			productReference = 840B4C541D3E0EFF00FF7A80 /* BioInfFirstTask */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		840B4C4C1D3E0EFF00FF7A80 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Stepan;
+				TargetAttributes = {
+					840B4C531D3E0EFF00FF7A80 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 840B4C4F1D3E0EFF00FF7A80 /* Build configuration list for PBXProject "BioInfFirstTask" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 840B4C4B1D3E0EFF00FF7A80;
+			productRefGroup = 840B4C551D3E0EFF00FF7A80 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				840B4C531D3E0EFF00FF7A80 /* BioInfFirstTask */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		840B4C501D3E0EFF00FF7A80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				840B4C6E1D3E5DF100FF7A80 /* FrequencyAnalysisTrainer.swift in Sources */,
+				840B4C661D3E265600FF7A80 /* GCContentCalc.swift in Sources */,
+				840B4C631D3E0FB300FF7A80 /* FastaParser.swift in Sources */,
+				84D31D9A1D3F803600E44458 /* MMTrainer.swift in Sources */,
+				84D31D9E1D3FAD3900E44458 /* MMCalculator.swift in Sources */,
+				840B4C691D3E531100FF7A80 /* GCContentTrainer.swift in Sources */,
+				840B4C701D3E5F7800FF7A80 /* FrequencyCalculator.swift in Sources */,
+				84D31D9C1D3FA5A900E44458 /* MMTester.swift in Sources */,
+				84D31D971D3ED73D00E44458 /* FrequencyAnalysisTester.swift in Sources */,
+				840B4C721D3E5FE400FF7A80 /* GCContentTester.swift in Sources */,
+				840B4C581D3E0EFF00FF7A80 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		840B4C591D3E0EFF00FF7A80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		840B4C5A1D3E0EFF00FF7A80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		840B4C5C1D3E0EFF00FF7A80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		840B4C5D1D3E0EFF00FF7A80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		840B4C4F1D3E0EFF00FF7A80 /* Build configuration list for PBXProject "BioInfFirstTask" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				840B4C591D3E0EFF00FF7A80 /* Debug */,
+				840B4C5A1D3E0EFF00FF7A80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		840B4C5B1D3E0EFF00FF7A80 /* Build configuration list for PBXNativeTarget "BioInfFirstTask" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				840B4C5C1D3E0EFF00FF7A80 /* Debug */,
+				840B4C5D1D3E0EFF00FF7A80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 840B4C4C1D3E0EFF00FF7A80 /* Project object */;
+}
