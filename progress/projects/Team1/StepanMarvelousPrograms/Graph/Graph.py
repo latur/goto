@@ -52,9 +52,9 @@ class GeneGraph :
 				self.edges[dependency[0]][dependency[1]] = float(dependency[2])
 				
 				#  Comment this piece if you want directed graph
-				if dependency[1] not in self.edges :
-					self.edges[dependency[1]] = {}
-				self.edges[dependency[1]][dependency[0]] = float(dependency[2])
+				#if dependency[1] not in self.edges :
+				#	self.edges[dependency[1]] = {}
+				#self.edges[dependency[1]][dependency[0]] = float(dependency[2])
 				#-----------------------------------------------
 
 
@@ -64,6 +64,19 @@ class GeneGraph :
 					self.incomingDegrees[dependency[1]] += 1
 				self.genes.add(dependency[0])
 				self.genes.add(dependency[1])
+			
+			#  uncomment this if you want to delete all one-sided links
+			unsuitableGenes = []
+			for gene in self.edges :
+				for gene2 in self.edges[gene].keys() :
+					if gene2 not in self.edges or gene not in self.edges[gene2].keys() :
+						#index1 = self.edges[gene2].index(gene)
+						#index2 = self.edges[gene].index(gene2)
+						unsuitableGenes.append((gene, gene2))	
+			for pair in unsuitableGenes :
+				self.edges[pair[0]].pop(pair[1]) 
+			#----------------------------------------------------------
+
 		print "  Graph initialized.\n"
 
 	#  Return number of outcoming dependencies of a particular gene in graph.
@@ -144,16 +157,17 @@ class Searcher :
 	visitedVerticies = []
 	names = []
 
-	#  Uses depth-first dearch in order to find connected component of the graph 
-	def startSearch (self, graph) :
+	#  Uses depth-first search in order to find connected component of the graph 
+	def calculateClusters (self, graph, filePath) :
 		#   TODO: НОРМАЛЬНО РАЗБИТЬ НА ФУНКЦИИ
 		self.names = list(graph.genes)
 		i = len(self.names)-1
 
-		with open("indirectedClusters.lal", "w") as file :
+		with open(filePath, "w") as file :
 			component = 0
 			while i >= 0 :
 				self._search (graph, self.names[i], file)
+
 				component += 1
 				
 				clusterLen = i - len(self.names) + 1
@@ -163,25 +177,29 @@ class Searcher :
 			return component
 
 
-	# It's private, dude.
-	def _search (self, graph, startVertex, fileForWriting) :
+	#  Depth-first search
+	def search (self, graph, startVertex, outputFile) :
+		self.names = list(graph.genes)
+		self._search(graph, startVertex, outputFile)
+
+	# It's private, dude
+	def _search (self, graph, startVertex, outputFile) :
 		index = self.names.index(startVertex)
 		self.names.pop(index)
 		self.visitedVerticies.append(startVertex)
-
-		fileForWriting.write("{}\t".format(startVertex))
+		outputFile.write("{}\t".format(startVertex))
 		if startVertex not in graph.edges :
 			return
 		for vertex in graph.edges[startVertex] :
 			if vertex not in self.visitedVerticies :
-				self._search(graph, vertex, fileForWriting)
+				self._search(graph, vertex, outputFile)
 
 
 
 graph = GeneGraph("Cancer.txt")
 
 searcher = Searcher()
-print "Number of components: " + str(searcher.startSearch(graph))
+print "Number of components: " + str(searcher.calculateClusters(graph, "dullClusters.lal"))
 
 #degrees = fillDegrees(graph)
 
