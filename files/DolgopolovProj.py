@@ -92,9 +92,50 @@ for i in repeated:
 import numpy as np
 import matplotlib.pyplot as plt
 
-fig = plt.figure()
-# plt.title('Histogram for repeated genes\' out dependences')
-fig.suptitle('Histogram for repeated genes\' out dependences', fontsize=14, fontweight='bold')
-plt.hist(out_gh_minus_g, bins=100)
-plt.show()
+# fig = plt.figure()
+# fig.suptitle('Histogram for repeated genes\' out dependences', fontsize=14, fontweight='bold')
+# plt.hist(out_gh_minus_g, bins=100)
+# plt.show()
 
+''' thr for ins '''
+mu = np.mean(out_gh_minus_g)
+
+from math import sqrt
+msum = 0
+for i in out_gh_minus_g:
+    msum += (i - mu)**2
+sigma = sqrt(msum/len(out_gh_minus_g))
+thr_min = mu - 2*sigma
+print('thr_min: ', thr_min)
+thr_max = mu + 2*sigma
+print('thr_max: ', thr_max)
+
+
+ids_more_max = []
+ids_less_min = []
+
+for i in repeated:
+    diff = 0
+    if not i in gh.mdict and i in g.mdict:
+        diff = 0 - len(g.mdict[i])
+    elif i in gh.mdict and not i in g.mdict:
+        diff = len(gh.mdict[i]) - 0
+    elif not (i in gh.mdict or i in g.mdict):
+        diff = 0
+    else:
+        diff = len(gh.mdict[i]) - len(g.mdict[i])
+
+    if diff > thr_max:
+        ids_more_max.append((i, diff))
+    elif diff < thr_min:
+        ids_less_min.append((i, diff))
+
+f = open('../progress/projects/Team0/diff_more_thr.txt','w+')
+for k,v in ids_more_max:
+    print(k,v,sep='\t', file=f)
+f.close()
+f = open('../progress/projects/Team0/diff_less_thr.txt','w+')
+for k,v in ids_less_min:
+    print(k,v,sep='\t', file=f)
+f.close()
+print('gocha')
