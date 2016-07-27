@@ -1,5 +1,5 @@
 f=open('D://projects/files/NewHumanNet.txt')
-f1=open('D://projects/files/Cancer_LUAD_Network.txt')
+f1=open('D://projects/files/Cancer_MEL_Network.txt')
 genArrH = {} #{ out: [ in ] }
 genArrC = {} #{ out: [ {in:expr}, ... ] }
 for  line in f:
@@ -55,8 +55,8 @@ import numpy as N
 import matplotlib.pyplot as P
 from math import sqrt
 
-#P.hist(diffArr, bins = 100)
-#P.show()
+P.hist(diffArr, bins = 100)
+P.show()
 
 arr = diffArr
 meanx = N.mean(arr)
@@ -70,8 +70,8 @@ thri_min = meanx - 2*sigma
 
 print(thri_plus)
 print(thri_min)
-f2=open('D://projects/maxThr.txt', 'w+')
-f3=open('D://projects/minThr.txt', 'w+')
+f2=open('D://projects/maxThrNew.txt', 'w+')
+f3=open('D://projects/minThrNew.txt', 'w+')
 for k,v in diffMap.items():
 	if v>thri_plus:
 		print(k, '\t', v, file=f2)
