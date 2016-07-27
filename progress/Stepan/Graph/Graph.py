@@ -157,16 +157,8 @@ class Searcher :
 	visitedVerticies = []
 	names = []
 
-<<<<<<< HEAD
-	#  Uses depth-first search in order to find connected component of the graph 
+    #  Uses depth-first search in order to find connected component of the graph
 	def calculateClusters (self, graph, filePath) :
-=======
-<<<<<<< HEAD
-=======
-	#  Uses depth-first dearch in order to find connected component of the graph 
->>>>>>> c46ec208181c60b5b0f5076154045739c96af003
-	def startSearch (self, graph) :
->>>>>>> 3b61755d9d8ac3023f2f5b37e6035bd8604aa18d
 		#   TODO: НОРМАЛЬНО РАЗБИТЬ НА ФУНКЦИИ
 		self.names = list(graph.genes)
 		i = len(self.names)-1
