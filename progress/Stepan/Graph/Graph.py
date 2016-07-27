@@ -144,6 +144,7 @@ class Searcher :
 	visitedVerticies = []
 	names = []
 
+	#  Uses depth-first dearch in order to find connected component of the graph 
 	def startSearch (self, graph) :
 		#   TODO: НОРМАЛЬНО РАЗБИТЬ НА ФУНКЦИИ
 		self.names = list(graph.genes)
