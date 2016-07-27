@@ -5,6 +5,7 @@
 
 void tokenDna(char delim[], char str[], int sz, bool eTokenType[], char* tokens[])
 {
+	assert(str && delim);
 	char* type = 0;
 	type = strtok(str, delim);
 
@@ -20,7 +21,7 @@ void tokenDna(char delim[], char str[], int sz, bool eTokenType[], char* tokens[
 			eTokenType[i] = false;
 			tokens[i] = strtok(NULL, delim);
 		}
-		else tokens[i] = strtok(NULL, delim);
+		else tokens[i] = type;
 
 		type = strtok(NULL, delim);
 	}

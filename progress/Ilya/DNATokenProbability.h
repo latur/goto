@@ -10,7 +10,7 @@ double calcTokenProb(int tableSize, char* token, double* table, const int k)
 	double* xTable = new double[tableSize];
 	for (int i = 0; i < tableSize; i++) xTable[i] = 1;
 	
-	countCombo(token, table, k);
+	countCombo(token, xTable, k);
 	for (int j = 0; j < tableSize; j++)
 		logProb += log(pow(table[j], xTable[j]));
 

@@ -17,7 +17,7 @@ const int SPEC_AMNT = 6000;
 
 void doWorms()
 {	
-	const int k = 2;
+	const int k = 8;
 	
 	file dna("train.fa.txt", "r");
 	char* str = new char[CHR_AMNT];
@@ -68,6 +68,8 @@ void doWorms()
 	double* xTable = new double[tableSize];
 	double logEProb = 0;
 	double logCProb = 0;
+	char eLetter[] = "E ";
+	char cLetter[] = "C ";
 
 	for (int i = 0; i < tableSize; i++) xTable[i] = 0;
 	for (int i = 0; i < SPEC_AMNT; i++)
@@ -75,9 +77,10 @@ void doWorms()
 		logEProb = calcTokenProb(tableSize, tokens[i], eTable, k);
 		logCProb = calcTokenProb(tableSize, tokens[i], cTable, k);
 
-		if (logEProb > logCProb)
-			 fprintf(output.Res(), "E ");
-		else fprintf(output.Res(), "C ");
+		if (logEProb > logCProb) fputs(eLetter, output.Res());
+		else fputs(cLetter, output.Res());
+
+		output.putc(' ');
 
 		logEProb = 0;
 		logCProb = 0;

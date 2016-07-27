@@ -42,6 +42,18 @@
     <ClInclude Include="DoChinchillas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Compliment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DNAChain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DNAClasses.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DNAToken.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">

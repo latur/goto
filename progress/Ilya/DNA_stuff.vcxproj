@@ -155,6 +155,10 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Compliment.h" />
+    <ClInclude Include="DNAChain.h" />
+    <ClInclude Include="DNAClasses.h" />
+    <ClInclude Include="DNAToken.h" />
     <ClInclude Include="DNATokenProbability.h" />
     <ClInclude Include="DoChinchillas.h" />
     <ClInclude Include="DoWorms.h" />

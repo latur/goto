@@ -3,7 +3,7 @@
 
 #include <cctype>
 
-enum nuc { A, T, G, C };
+enum nuc { A, T, G, C, N };
 
 void countCombo(char* tok, double* table, const int k)
 {
@@ -11,6 +11,7 @@ void countCombo(char* tok, double* table, const int k)
 	assert(table);
 
 	nuc* combo = new nuc[k];
+	bool readable = true;
 	
 	for (int i = 0; tok[i + k - 1]; i++)
 	{
@@ -33,19 +34,22 @@ void countCombo(char* tok, double* table, const int k)
 			case 'C':
 				combo[j] = C;
 				break;
+			default:
+				readable = false;
+				break;
 			}
 		}
 
 		int curTablePos = 0;
-		for (int j = 0; j < k; j++)
+		for (int j = 0; j < k && readable; j++)
 			curTablePos += pow(4, j) * combo[j];
 
-		table[curTablePos]++;
+		if (readable) table[curTablePos]++;
 	}
 
 	for (int i = 0; i >= 0; i--)
 	{
-		for (int j = 0; j < k; j++)
+		for (int j = 0; j < k && readable; j++)
 		{
 			switch (tok[i + j])
 			{
@@ -64,14 +68,17 @@ void countCombo(char* tok, double* table, const int k)
 			case 'C':
 				combo[j] = G;
 				break;
+			default:
+				readable = false;
+				break;
 			}
 		}
 
 		int curTablePos = 0;
-		for (int j = 0; j < k; j++)
+		for (int j = 0; j < k && readable; j++)
 			curTablePos += pow(4, j) * combo[j];
 
-		table[curTablePos]++;
+		if (readable) table[curTablePos]++;
 	}
 
 	delete combo;
