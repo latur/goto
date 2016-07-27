@@ -32,6 +32,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from math import sqrt
+import sys
+
+sys.setrecursionlimit(15000)
 
 class GeneGraph :
 	edges = {}
@@ -48,12 +51,20 @@ class GeneGraph :
 					self.edges[dependency[0]] = {}
 				self.edges[dependency[0]][dependency[1]] = float(dependency[2])
 				
+				#  Comment this piece if you want directed graph
+				if dependency[1] not in self.edges :
+					self.edges[dependency[1]] = {}
+				self.edges[dependency[1]][dependency[0]] = float(dependency[2])
+				#-----------------------------------------------
+
+
 				if dependency[1] not in self.incomingDegrees :
 					self.incomingDegrees[dependency[1]] = 1
 				else :
 					self.incomingDegrees[dependency[1]] += 1
 				self.genes.add(dependency[0])
 				self.genes.add(dependency[1])
+		print "  Graph initialized.\n"
 
 	#  Return number of outcoming dependencies of a particular gene in graph.
 	def getOutcomingDegreeOfGene (self, geneName) :
@@ -70,7 +81,7 @@ class GeneGraph :
 			return self.incomingDegrees[geneName]
 
 #  Calculates income and outcome degrees for each gene and puts them to two arrays
-def fillDependencies (graph) :
+def fillDegrees (graph) :
 	incomingDegreesForGraph = []
 	for gene in graph.genes :
 		incomingDegreesForGraph.append(graph.getIncomingDegreeOfGene(gene))
@@ -82,6 +93,8 @@ def fillDependencies (graph) :
 		outcomingDegreesForGraph.append(gene)		
 
 	return (incomingDegreesForGraph, outcomingDegreesForGraph)
+	print "  Degrees calculated.\n"
+ 
 
 #  Makes histograms for each degree array
 def showHistograms (incomingDegreesForGraph, outcomingDegreesForGraph) :
@@ -127,18 +140,52 @@ def analyseDataAndFindSickGenes (degrees, path) :
 	sickGenes = findSickGenes(degrees, treshold)
 	saveToFile (path, sickGenes)
 
+class Searcher :
+	visitedVerticies = []
+	names = []
 
-graph = GeneGraph("HumanNet.txt")
-print "Graph initialized.\n"
+	#  Uses depth-first dearch in order to find connected component of the graph 
+	def startSearch (self, graph) :
+		#   TODO: НОРМАЛЬНО РАЗБИТЬ НА ФУНКЦИИ
+		self.names = list(graph.genes)
+		i = len(self.names)-1
 
-degrees = fillDependencies(graph)
-print "Degrees calculated.\n"
- 
+		with open("indirectedClusters.lal", "w") as file :
+			component = 0
+			while i >= 0 :
+				self._search (graph, self.names[i], file)
+				component += 1
+				
+				clusterLen = i - len(self.names) + 1
+				file.write("\nPrevious cluster ({})^\n\n".format(clusterLen))
+				
+				i = len(self.names)-1
+			return component
+
+
+	# It's private, dude.
+	def _search (self, graph, startVertex, fileForWriting) :
+		index = self.names.index(startVertex)
+		self.names.pop(index)
+		self.visitedVerticies.append(startVertex)
+
+		fileForWriting.write("{}\t".format(startVertex))
+		if startVertex not in graph.edges :
+			return
+		for vertex in graph.edges[startVertex] :
+			if vertex not in self.visitedVerticies :
+				self._search(graph, vertex, fileForWriting)
+
+
+
+graph = GeneGraph("Cancer.txt")
+
+searcher = Searcher()
+print "Number of components: " + str(searcher.startSearch(graph))
+
+#degrees = fillDegrees(graph)
+
 #showHistograms (degrees[0][::2], degrees[1][::2])
 
-analyseDataAndFindSickGenes (degrees[0], "IncomeSickGenes.lal")
-print "Income saved.\n"
-analyseDataAndFindSickGenes (degrees[1], "OutcomeSickGenes.lal")
-print "Outcome saved.\n"
-
-
+#analyseDataAndFindSickGenes (degrees[0], "IncomeSickCancerGenes.lal")
+#analyseDataAndFindSickGenes (degrees[1], "OutcomeSickCancerGenes.lal")
