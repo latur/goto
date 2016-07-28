@@ -1,0 +1,196 @@
+#quu..__
+# $$$b  `---.__
+#  "$$b        `--.                          ___.---uuudP
+#   `$$b           `.__.------.__     __.---'      $$$$"              .
+#     "$b          -'            `-.-'            $$$"              .'|
+#       ".                                       d$"             _.'  |
+#         `.   /                              ..."             .'     |
+#           `./                           ..::-'            _.'       |
+#            /                         .:::-'            .-'         .'
+#           :                          ::''\          _.'            |
+#          .' .-.             .-.           `.      .'               |
+#          : /'$$|           .@"$\           `.   .'              _.-'
+#         .'|$u$$|          |$$,$$|           |  <            _.-'
+#         | `:$$:'          :$$$$$:           `.  `.       .-'
+#         :                  `"--'             |    `-.     \
+#        :##.       ==             .###.       `.      `.    `\
+#        |##:                      :###:        |        >     >
+#        |#'     `..'`..'          `###'        x:      /     /
+#         \                                   xXX|     /    ./
+#          \                                xXXX'|    /   ./
+#          /`-.                                  `.  /   /
+#         :    `-  ...........,                   | /  .'
+#         |         ``:::::::'       .            |<    `.
+#         |             ```          |           x| \ `.:``.
+#         |                         .'    /'   xXX|  `:`M`M':.
+#         |    |                    ;    /:' xXXX'|  -'MMMMM:'
+#         `.  .'                   :    /:'       |-'MMMM.-'
+#          |  |                   .'   /'        .'MMM.-'
+#          `'`'                   :  ,'          |MMM<
+#            |                     `'            |tbap\
+#             \                                  :MM.-'
+#              \                 |              .''
+#               \.               `.            /
+#                /     .:::::::.. :           /
+#               |     .:::::::::::`.         /
+#               |   .:::------------\       /
+#              /   .''               >::'  /
+#              `',:                 :    .'
+# 
+
+import matplotlib.pyplot as plt
+import numpy as np
+from math import sqrt
+
+class GeneGraph :
+	edges = {}
+	indeg = {}
+	genes = set()
+
+
+
+	ex = set()     
+	def dfs(node): 
+	    ex.add(node)
+	    for i in range(len(g)):
+	        if g[node][i] == 1 and i not in ex:
+	            print(i)
+	            dfs(i)
+
+	def __init__ (self, filePath) :#, values) :
+		with open (filePath) as file :
+			for line in file :
+				d = line.strip().split()
+				if d[0] not in self.edges :
+					self.edges[d[0]] = {}
+				self.edges[d[0]][d[1]] = float(d[2])
+				
+				if d[1] not in self.indeg :
+					self.indeg[d[1]] = 1
+				else :
+					self.indeg[d[1]] += 1
+				self.genes.add(d[0])
+				self.genes.add(d[1])
+
+	def getOutDegreeOfGene (self, geneName) :
+		if geneName not in self.edges :
+			return 0
+		else :
+			return len(self.edges[geneName]) 
+
+	def getInDegreeOfGene (self, geneName) :
+		if geneName not in self.indeg :
+			return 0
+		else :
+			return self.indeg[geneName]
+
+def fillDependencies (graph) :
+	indegForGraph = []
+	for gene in graph.genes :
+		indegForGraph.append(graph.getInDegreeOfGene(gene))
+		indegForGraph.append(gene)
+
+	outdegForGraph = []
+	for gene in graph.genes :
+		outdegForGraph.append(graph.getOutDegreeOfGene(gene))
+		outdegForGraph.append(gene)		
+
+	return (indegForGraph, outdegForGraph)
+
+def showHistograms (indegForGraph, outdegForGraph) :
+	plt.subplot (2,1,0).set_title("Income")
+	plt.hist(indegForGraph, bins = 60)
+	plt.subplot (2,1,1).set_title("Outcome")
+	plt.hist(outdegForGraph, bins = 60)
+	plt.show()
+
+def calculatetrash(deg) :
+	avg = np.mean(deg)
+	stdDev = 0
+	for value in deg :
+		sqDev = pow(value-avg, 2)
+		stdDev += sqDev
+	
+	stdDev /= len(deg)
+	stdDev = sqrt(stdDev)
+
+	trash = avg + 2*stdDev
+	return trash
+
+def findbossGenes (deg, trash) :
+	res = ""
+	for i in range (0, len(deg), 2) :
+		if deg[i] >= trash :
+			res += "{}\t{}\n".format(deg[i+1], deg[i])
+	return res
+
+def saveToFile (path, data) :
+	with open(path, "w") as res :
+		res.write(data)
+		print ("  File \"{}\" created.").format(path)
+
+def FindbossGenes (deg, path) :
+	trash = calculatetrash(deg[::2]) 
+	print "  trash calculated."
+	
+	bossGenes = findbossGenes(deg, trash)
+	saveToFile (path, bossGenes)
+
+
+graph = GeneGraph("Cancer_LUAD_Network.txt")
+print "Graph initialized.\n"
+
+deg = fillDependencies(graph)
+print "deg calculated.\n"
+ 
+
+FindbossGenes (deg[0], "InbossGenes.trl")
+print "Income saved.\n"
+FindbossGenes (deg[1], "OutbossGenes.trl")
+print "Outcome saved.\n"
+
+
+
+
+class Searcher :
+	visitedVerticies = []
+	names = []
+
+	#  Uses depth-first search in order to find connected component of the graph 
+	def calculateClusters (self, graph, filePath) :
+		#   TODO: НОРМАЛЬНО РАЗБИТЬ НА ФУНКЦИИ
+		self.names = list(graph.genes)
+		i = len(self.names)-1
+
+		with open(filePath, "w") as file :
+			component = 0
+			while i >= 0 :
+				self._search (graph, self.names[i], file)
+
+				component += 1
+				
+				clusterLen = i - len(self.names) + 1
+				file.write("\nPrevious cluster ({})^\n\n".format(clusterLen))
+				
+				i = len(self.names)-1
+			return component
+
+
+	#  Depth-first search
+	def search (self, graph, startVertex, outputFile) :
+		self.names = list(graph.genes)
+		self._search(graph, startVertex, outputFile)
+
+	# It's private, dude
+	def _search (self, graph, startVertex, outputFile) :
+		index = self.names.index(startVertex)
+		self.names.pop(index)
+		self.visitedVerticies.append(startVertex)
+		outputFile.write("{}\t".format(startVertex))
+		if startVertex not in graph.edges :
+			return
+		for vertex in graph.edges[startVertex] :
+			if vertex not in self.visitedVerticies :
+				self._search(graph, vertex, outputFile)
+
+
