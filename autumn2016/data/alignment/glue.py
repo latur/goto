@@ -65,13 +65,6 @@ def analyze_files(f1, f2, out):
 
 
 def main():
-    with open(sys.argv[1]) as f1, open(sys.argv[2]) as f2, open(sys.argv[3], 'w') as out:
-        start = time.perf_counter()
-        analyze_files(f1, f2, out)
-        print(time.perf_counter() - start)
-
-
-def main():
     parser = argparse.ArgumentParser(description='Glue reads together')
     parser.add_argument('-1', help='First input read', type=argparse.FileType('r'),
                         dest='input1', required=True, metavar='FILE')
