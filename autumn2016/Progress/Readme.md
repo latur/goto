@@ -1,6 +1,6 @@
 ## Прогресс
 
-Степан [сделал задания](https://github.com/Mangman/Autumn)
+Степан [сделал некоторые задания](https://github.com/Mangman/Autumn)
 
 ## Graphviz
 
