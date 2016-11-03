@@ -1,6 +1,7 @@
 ## Прогресс
 
 Степан [сделал некоторые задания](https://github.com/Mangman/Autumn)
+
 Михаил [сделал некоторые задания + сокращенный граф](https://github.com/gicha/MEGA_BIO_PARTY)
 
 ## Graphviz
